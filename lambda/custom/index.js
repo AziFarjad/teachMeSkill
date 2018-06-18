@@ -28,6 +28,18 @@ function persistAnswer(handlerInput, answer){
   handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
 }
 
+function updateQACounter(handlerInput, value){
+  let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  sessionAttributes['QACounter'] += value;
+  handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+}
+
+function UpdateScore(handlerInput, value){
+  let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  sessionAttributes['Score'] = value;
+  handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+}
+
 function getAnswer(handlerInput){
   let answer = undefined;
 
@@ -60,13 +72,13 @@ const LaunchHandler = {
           backButton : 'VISIBLE',
           backgroundImage: welcomeImage,
         });
-   }
+    }
 
-  return responseBuilder
-    .speak(speechOutput)
-    .reprompt(ACTIONS_MESSAGE)
-    .withSimpleCard(skillTitle, speechOutput)
-    .getResponse();
+    return responseBuilder
+      .speak(speechOutput)
+      .reprompt(ACTIONS_MESSAGE)
+      .withSimpleCard(skillTitle, speechOutput)
+      .getResponse();
   },
 };
 
@@ -87,13 +99,49 @@ const StartColorsQuizHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
     return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
-            && (request.intent.name === 'StartColorsQuizIntent'
+            && (request.intent.name === 'StartColorsQuizIntent'));
+  },
+  handle(handlerInput) {
+    UpdateScore.call(this, handlerInput, 0);
+    let skillTitle = constants.getSkillTitle();
+    const responseBuilder = handlerInput.responseBuilder;
+
+    if (helpers.supportsDisplay(handlerInput)) {
+      const image = new Alexa.ImageHelper()
+          .addImageInstance(constants.getLargeWelcomeImg().url)
+          .getImage();
+
+      responseBuilder.addRenderTemplateDirective({
+          type : 'BodyTemplate7',
+          token : 'string',
+          backButton : 'VISIBLE',
+          backgroundImage: image,
+        });
+    }
+
+    let speechOutput = 'Starting Color Quiz.  Each round, I will give you 5 Images, and you will need to answer me about a color in the image. Ready?';
+    return responseBuilder
+      .speak(speechOutput)
+      .reprompt('Are you ready to start the quiz?')
+      .withSimpleCard(skillTitle, speechOutput)
+      .getResponse();
+  },
+};
+
+const AskQuestionHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && (request.intent.name === 'AMAZON.YesIntent'
             || request.intent.name === 'continueGameIntent'));
   },
   handle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
     let skillTitle = constants.getSkillTitle();
 
     setGameIsPlaying.call(this, handlerInput, true);
+
+    updateQACounter.call(this, handlerInput, 1);
 
     const responseBuilder = handlerInput.responseBuilder;
     let object = getRandomObject();
@@ -119,7 +167,11 @@ const StartColorsQuizHandler = {
         });
     }
 
-    let speechOutput = QA.question + 'Take your time to answer.';
+    let speechOutput = QA.question;
+    if (request.intent.name === 'AMAZON.YesIntent'){
+        speechOutput = 'All right. ' + speechOutput;
+    }
+
     return responseBuilder
       .speak(speechOutput)
       .reprompt(QA.question)
@@ -142,6 +194,8 @@ const answerHandler = {
     const request = handlerInput.requestEnvelope.request;
     let answer = request.intent.slots.color.value;
     let expectedAnswer = getAnswer.call(this, handlerInput);
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    let score = sessionAttributes['Score'];
 
     if (gameIsPlaying) {
       let imageURL = constants.getErrorImg().url;
@@ -150,11 +204,27 @@ const answerHandler = {
       if (answer == expectedAnswer) {
         imageURL = constants.getCorrectImg().url;
         speechOutput = 'Well done.'; //Randomize
+        score += 1;
+        UpdateScore.call(this, handlerInput, 1);
       } else {
-        speechOutput += ' ' + 'The correct answer is ' + expectedAnswer + '.';
+        speechOutput += ' ' + 'The correct answer is ' + expectedAnswer + '. ';
       }
 
-      speechOutput += ' Say next to continue the quiz or stop to quit the quiz.'
+      let screenText = '';
+      let QACounter = sessionAttributes['QACounter'];
+
+      let shouldContinueGame = QACounter < constants.getNumberOfQuestionsToAsk() - 1;
+      if (shouldContinueGame) {
+        speechOutput += ' Say next to continue the quiz or stop to quit the quiz.'
+      } else {
+        imageURL = constants.getTrophyImg().url;
+        //// TODO: Update speechOutput to tell a sound using SSML like tadaaaaaa
+        speechOutput += 'Here is your score. ' + score + ' out of ' +
+          constants.getNumberOfQuestionsToAsk() + '.';
+        // TODO: Update Primary text to show number of score 4/5
+        speechOutput += 'To start a new quiz say start a quiz, say stop to quit.';
+        screenText = score + '/' + constants.getNumberOfQuestionsToAsk();
+      }
 
       const responseBuilder = handlerInput.responseBuilder;
 
@@ -166,15 +236,27 @@ const answerHandler = {
 
         const primaryText = new Alexa.RichTextContentHelper()
             .withPrimaryText('')
-            .getTextContent();
+            .getTextContent(screenText);
 
-        responseBuilder.addRenderTemplateDirective({
-            type : 'BodyTemplate7',
-            token : 'string',
-            backButton : 'VISIBLE',
-            image: image,
-            textContent: primaryText,
-          });
+        //// TODO: Show score on the screen
+        //if (shouldContinueGame) {
+          responseBuilder.addRenderTemplateDirective({
+              type : 'BodyTemplate7',
+              token : 'string',
+              backButton : 'HIDDEN',
+              image: image,
+              textContent: primaryText,
+            });
+        // } else {
+        //   responseBuilder.addRenderTemplateDirective({
+        //       type : 'BodyTemplate3',
+        //       token : 'string',
+        //       backButton : 'HIDDEN',
+        //       image: image,
+        //       backgroundImage: image,
+        //       textContent: primaryText,
+        //     });
+        // }
       }
 
       return responseBuilder
@@ -275,6 +357,7 @@ exports.handler = skillBuilder
     LaunchHandler,
     LearnColorsHandler,
     StartColorsQuizHandler,
+    AskQuestionHandler,
     answerHandler,
     HelpHandler,
     ExitHandler,

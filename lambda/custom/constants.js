@@ -6,6 +6,9 @@ module.exports = {
     'getMemoryAttributes': function() {
             const memoryAttributes = {
 
+            "score":0,
+            "QACounter":0,
+
             "history":[],
 
             "launchCount":0,
@@ -29,10 +32,18 @@ module.exports = {
 
         return memoryAttributes;
     },
+    'getNumberOfQuestionsToAsk': function() {
+      return 5;
+    },
     'getWelcomeCardImg': function() {
         return {
             smallImageUrl: "https://s3.amazonaws.com/skill-images-789/cards/card_plane720_480.png",
             largeImageUrl: "https://s3.amazonaws.com/skill-images-789/cards/card_plane1200_800.png"
+        };
+    },
+    'getTrophyImg': function() {
+        return {
+            url: 'https://s3-eu-west-1.amazonaws.com/suzyimages/Trophy.png'
         };
     },
     'getDisplayImg1': function() {
