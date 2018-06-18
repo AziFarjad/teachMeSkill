@@ -29,7 +29,7 @@ function persistAnswer(handlerInput, answer){
 }
 
 function getAnswer(handlerInput){
-  let answer = 'Unknown';
+  let answer = undefined;
 
   let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
   if (sessionAttributes['answer'] != undefined){
@@ -54,40 +54,19 @@ const LaunchHandler = {
           .addImageInstance(constants.getLargeWelcomeImg().url)
           .getImage();
 
-      const primaryText = new Alexa.RichTextContentHelper()
-          .withPrimaryText('Welcome')
-          .getTextContent();
+      responseBuilder.addRenderTemplateDirective({
+          type : 'BodyTemplate7',
+          token : 'string',
+          backButton : 'VISIBLE',
+          backgroundImage: welcomeImage,
+        });
+   }
 
-          responseBuilder.addRenderTemplateDirective({
-              type : 'BodyTemplate7',
-              token : 'string',
-              backButton : 'VISIBLE',
-              backgroundImage: welcomeImage,
-              textContent: primaryText,
-            });
-          /*"type":"BodyTemplate1",
-            "token": "string",
-            "backButton": "VISIBLE"(default) | "HIDDEN",
-            "backgroundImage": Image,
-            "title": "string",
-            "textContent": TextContent*/
-
-      // responseBuilder.addRenderTemplateDirective({
-      //     type : 'BodyTemplate1',
-      //     token : 'string',
-      //     backButton : 'VISIBLE',
-      //     image: welcomeImage,
-      //     title: 'The title',
-      //     textContent: 'This is a looooooong text',
-      //   });
-    }
-
-    return responseBuilder
-      .speak(speechOutput)
-      .reprompt(ACTIONS_MESSAGE)
-      //.withShouldEndSession(true)
-      .withSimpleCard(skillTitle, speechOutput)
-      .getResponse();
+  return responseBuilder
+    .speak(speechOutput)
+    .reprompt(ACTIONS_MESSAGE)
+    .withSimpleCard(skillTitle, speechOutput)
+    .getResponse();
   },
 };
 
@@ -97,10 +76,54 @@ const LearnColorsHandler = {
     return (request.intent.name === 'LearnColorsIntent');
   },
   handle(handlerInput) {
-    // To DO: This sesction will show some images and it will teach colors
+    // To DO: This sesction will teach colors by showing images and talking about colors in the picture
     return handlerInput.responseBuilder
       .speak('Let us learn colors')
-      //.withSimpleCard(SKILL_NAME, randomFact)
+      .getResponse();
+  },
+};
+
+const StartColorsQuizHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && (request.intent.name === 'StartColorsQuizIntent'
+            || request.intent.name === 'continueGameIntent'));
+  },
+  handle(handlerInput) {
+    let skillTitle = constants.getSkillTitle();
+
+    setGameIsPlaying.call(this, handlerInput, true);
+
+    const responseBuilder = handlerInput.responseBuilder;
+    let object = getRandomObject();
+    let QA = getRandomQuestionAnswer(object);
+
+    persistAnswer.call(this, handlerInput, QA.answer)
+
+    if (helpers.supportsDisplay(handlerInput)) {
+      const image = new Alexa.ImageHelper()
+          .addImageInstance(object.url)
+          .getImage();
+
+      const primaryText = new Alexa.RichTextContentHelper()
+          .withPrimaryText(QA.question)
+          .getTextContent();
+
+      responseBuilder.addRenderTemplateDirective({
+          type : 'BodyTemplate7',
+          token : 'string',
+          backButton : 'VISIBLE',
+          backgroundImage: image,
+          textContent: primaryText,
+        });
+    }
+
+    let speechOutput = QA.question + 'Take your time to answer.';
+    return responseBuilder
+      .speak(speechOutput)
+      .reprompt(QA.question)
+      .withSimpleCard(skillTitle, speechOutput)
       .getResponse();
   },
 };
@@ -113,32 +136,25 @@ const answerHandler = {
   },
   handle(handlerInput) {
     let skillTitle = constants.getSkillTitle();
+    let gameIsPlaying = isGamePlaying.call(this, handlerInput);
 
-    let gameIsPlaying = false;
-
-    let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-    if (sessionAttributes['gameIsPlaying'] != undefined){
-      gameIsPlaying = sessionAttributes['gameIsPlaying']
-    }
-
-    //let gameIsPlaying = isGamePlaying(handlerInput);
-
-    let message = '';
+    let speechOutput = '';
     const request = handlerInput.requestEnvelope.request;
     let answer = request.intent.slots.color.value;
     let expectedAnswer = getAnswer.call(this, handlerInput);
 
     if (gameIsPlaying) {
       let imageURL = constants.getErrorImg().url;
-      let message = 'Ah, No. '; //Randomize
+      let speechOutput = 'Ah, No. '; // TODO: Randomize
+      // TODO: : Check answer against undefined
       if (answer == expectedAnswer) {
         imageURL = constants.getCorrectImg().url;
-        message = 'Well done.'; //Randomize
+        speechOutput = 'Well done.'; //Randomize
       } else {
-        message += ' ' + 'The correct answer is ' + expectedAnswer + '.';
+        speechOutput += ' ' + 'The correct answer is ' + expectedAnswer + '.';
       }
 
-      message += ' Say next to continue the quiz or stop to quit the quiz.'
+      speechOutput += ' Say next to continue the quiz or stop to quit the quiz.'
 
       const responseBuilder = handlerInput.responseBuilder;
 
@@ -162,67 +178,18 @@ const answerHandler = {
       }
 
       return responseBuilder
-        .speak(message)
+        .speak(speechOutput)
         .reprompt('')
-        //.withSimpleCard(skillTitle, speechOutput)
+        .withSimpleCard(skillTitle, speechOutput)
         .getResponse();
     } else {
-      console.log('4');
+      //// TODO: Better error handling when user mentions a color outside the quiz
       return responseBuilder
         .speak('I do not understand')
         .reprompt('')
         .withSimpleCard(skillTitle, 'I do not understand')
         .getResponse();
     }
-  },
-};
-
-const StartColorsQuizHandler = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    return (handlerInput.requestEnvelope.request.type === 'IntentRequest'
-            && (request.intent.name === 'StartColorsQuizIntent'
-            || request.intent.name === 'continueGameIntent'));
-  },
-  handle(handlerInput) {
-    // Keep the state that game is playing
-    let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-    sessionAttributes['gameIsPlaying'] = true;
-    //setGameIsPlaying.call(this, handlerInput, true);
-
-    let skillTitle = constants.getSkillTitle();
-    const responseBuilder = handlerInput.responseBuilder;
-    let object = getRandomObject();
-    let QA = getRandomQuestionAnswer(object);
-
-    //persistAnswer.call(this, QA.answer)
-    sessionAttributes['answer'] = QA.answer;
-    handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
-    if (helpers.supportsDisplay(handlerInput)) {
-      const image = new Alexa.ImageHelper()
-          .addImageInstance(object.url)
-          .getImage();
-
-      const primaryText = new Alexa.RichTextContentHelper()
-          .withPrimaryText(QA.question)
-          .getTextContent();
-
-      responseBuilder.addRenderTemplateDirective({
-          type : 'BodyTemplate7',
-          token : 'string',
-          backButton : 'VISIBLE',
-          backgroundImage: image,
-          textContent: primaryText,
-        });
-    }
-
-    return responseBuilder
-      .speak(QA.question + 'Take your time to answer.')
-      .reprompt(QA.question)
-      //.withShouldEndSession(true)
-      //.withSimpleCard(skillTitle, speechOutput)
-      .getResponse();
   },
 };
 
@@ -296,7 +263,8 @@ const ErrorHandler = {
 const SKILL_NAME = 'Color Guru';
 const WELCOME_MESSAGE = 'Welcome to color guru.';
 const ACTIONS_MESSAGE = 'What do you want to do? To learn about colors or to take a color quiz?';
-
+// // TODO: Update Help message based on when they ask for help
+const HELP_MESSAGE = 'You can do a quiz by saying start a color quiz, or, you can say exit... What can I help you with?'
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
