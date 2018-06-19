@@ -54,13 +54,19 @@ function getAnswer(handlerInput){
 const LaunchHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    return request.type === 'LaunchRequest';
+    return (request.type === 'LaunchRequest') ||
+            (handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && request.intent.name === 'AMAZON.NoIntent');
   },
   handle(handlerInput) {
     let skillTitle = constants.getSkillTitle();
     const responseBuilder = handlerInput.responseBuilder;
-    const speechOutput = WELCOME_MESSAGE + ' ' + ACTIONS_MESSAGE;
-
+    let speechOutput = ACTIONS_MESSAGE;
+    if (handlerInput.requestEnvelope.session.new) {
+       speechOutput = WELCOME_MESSAGE + ' ' + speechOutput;
+    } else {
+       speechOutput = 'Alright.' + ' ' + speechOutput;
+    }
     if (helpers.supportsDisplay(handlerInput)) {
       const welcomeImage = new Alexa.ImageHelper()
           .addImageInstance(constants.getLargeWelcomeImg().url)
