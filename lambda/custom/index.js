@@ -203,7 +203,7 @@ const answerHandler = {
       // TODO: : Check answer against undefined
       if (answer == expectedAnswer) {
         imageURL = constants.getCorrectImg().url;
-        speechOutput = 'Well done.'; //Randomize
+        speechOutput = '<say-as interpret-as="interjection">well done</say-as>. '; //Randomize
         score += 1;
         UpdateScore.call(this, handlerInput, 1);
       } else {
@@ -219,8 +219,8 @@ const answerHandler = {
       } else {
         imageURL = constants.getTrophyImg().url;
         //// TODO: Update speechOutput to tell a sound using SSML like tadaaaaaa
-        speechOutput += 'Here is your score. ' + score + ' out of ' +
-          constants.getNumberOfQuestionsToAsk() + '.';
+        speechOutput += 'Here is your score: ' + score + ' out of ' +
+          constants.getNumberOfQuestionsToAsk() + '. ';
         // TODO: Update Primary text to show number of score 4/5
         speechOutput += 'To start a new quiz say start a quiz, say stop to quit.';
         screenText = score + '/' + constants.getNumberOfQuestionsToAsk();
@@ -235,11 +235,10 @@ const answerHandler = {
             .getImage();
 
         const primaryText = new Alexa.RichTextContentHelper()
-            .withPrimaryText('')
-            .getTextContent(screenText);
+            .withPrimaryText(screenText)
+            .getTextContent('');
 
-        //// TODO: Show score on the screen
-        //if (shouldContinueGame) {
+        if (shouldContinueGame) {
           responseBuilder.addRenderTemplateDirective({
               type : 'BodyTemplate7',
               token : 'string',
@@ -247,16 +246,15 @@ const answerHandler = {
               image: image,
               textContent: primaryText,
             });
-        // } else {
-        //   responseBuilder.addRenderTemplateDirective({
-        //       type : 'BodyTemplate3',
-        //       token : 'string',
-        //       backButton : 'HIDDEN',
-        //       image: image,
-        //       backgroundImage: image,
-        //       textContent: primaryText,
-        //     });
-        // }
+        } else {
+          handlerInput.responseBuilder.addRenderTemplateDirective({
+            type: 'BodyTemplate7',
+            token: 'string',
+            backButton: 'HIDDEN',
+            image: image,
+            title: screenText,
+          });
+        }
       }
 
       return responseBuilder
