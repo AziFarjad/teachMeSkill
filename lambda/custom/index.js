@@ -150,6 +150,7 @@ const AskQuestionHandler = {
     updateQACounter.call(this, handlerInput, 1);
 
     const responseBuilder = handlerInput.responseBuilder;
+
     let object = getRandomObject();
     let QA = getRandomQuestionAnswer(object);
 
@@ -226,8 +227,8 @@ const answerHandler = {
       } else {
         imageURL = constants.getTrophyImg().url;
         //// TODO: Update speechOutput to tell a sound using SSML like tadaaaaaa
-        speechOutput += '<prosody volume="loud"> And your score is: </prosody> <audio src="https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_drum_comedy_02.mp3"/>' +
-          '<prosody volume="x-loud">' + score + ' out of ' + constants.getNumberOfQuestionsToAsk() + '. </prosody>';
+        speechOutput += '<prosody volume="loud"> And your score is: <audio src="https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_drum_comedy_02.mp3"/>' +
+          score + ' out of ' + constants.getNumberOfQuestionsToAsk() + '. </prosody>';
         // TODO: Update Primary text to show number of score 4/5
         speechOutput += 'To start a new quiz say start a quiz, say stop to quit.';
         screenText = score + '/' + constants.getNumberOfQuestionsToAsk();
