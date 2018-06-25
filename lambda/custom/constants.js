@@ -2,11 +2,36 @@
  * Created by mccaul on 5/11/18.
  */
 
+let AWS = require('aws-sdk');
+AWS.config.region = process.env.AWS_REGION || 'us-east-1';
+
+const DYNAMODB_TABLE = process.env.DYNAMODB_TABLE || 'askMemorySkillTable';
+console.log('DYNAMODB_TABLE ' + DYNAMODB_TABLE);
+
+// const localDynamoClient = new AWS.DynamoDB({apiVersion : 'latest', endpoint : 'http://localhost:8000'});
+
+// AWS.config.endpoint = 'http://localhost:8000';
+
 module.exports = {
+    'invocationName': 'teach me',
+    'debug':false,
+    'QuestionCount': 5,
+    'AWS': AWS,
+    'DYNAMODB_TABLE': DYNAMODB_TABLE,
+
     'getMemoryAttributes': function() {
             const memoryAttributes = {
 
             "score":0,
+            "game": "",
+
+            "questionList":[],
+            "currentQuestionIndex": 0,
+            "correctCount":0,
+            "wrongCount":0,
+            "wrongList":[],
+
+
             "QACounter":0,
 
             "history":[],

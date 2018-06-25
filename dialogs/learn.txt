@@ -1,0 +1,10 @@
+~ 555
+LaunchRequest
+LearnColorsIntent
+AMAZON.YesIntent
+GetColorIntent color=blue
+? GetColorIntent color=red
+? GetColorIntent color=yellow
+? GetColorIntent color=orange
+? GetColorIntent color=purple
+AMAZON.StopIntent

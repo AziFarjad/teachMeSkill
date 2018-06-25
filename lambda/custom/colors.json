@@ -1,0 +1,566 @@
+
+{"colors":
+  [
+    {"fileName":"﻿Pink",
+      "title":"Pink",
+      "difficulty":"easy"
+    },
+    {"fileName":"LightPink",
+      "title":"Light Pink",
+      "difficulty":"hard"
+    },
+    {"fileName":"HotPink",
+      "title":"Hot Pink",
+      "difficulty":"hard"
+    },
+    {"fileName":"DeepPink",
+      "title":"Deep Pink",
+      "difficulty":"hard"
+    },
+    {"fileName":"PaleVioletRed",
+      "title":"Pale Violet Red",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumVioletRed",
+      "title":"Medium Violet Red",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightSalmon",
+      "title":"Light Salmon",
+      "difficulty":"hard"
+    },
+    {"fileName":"Salmon",
+      "title":"Salmon",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkSalmon",
+      "title":"Dark Salmon",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightCoral",
+      "title":"Light Coral",
+      "difficulty":"hard"
+    },
+    {"fileName":"IndianRed",
+      "title":"Indian Red",
+      "difficulty":"hard"
+    },
+    {"fileName":"Crimson",
+      "title":"Crimson",
+      "difficulty":"hard"
+    },
+    {"fileName":"FireBrick",
+      "title":"Fire Brick",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkRed",
+      "title":"Dark Red",
+      "difficulty":"hard"
+    },
+    {"fileName":"Red",
+      "title":"Red",
+      "difficulty":"easy"
+    },
+    {"fileName":"OrangeRed",
+      "title":"Orange Red",
+      "difficulty":"hard"
+    },
+    {"fileName":"Tomato",
+      "title":"Tomato",
+      "difficulty":"hard"
+    },
+    {"fileName":"Coral",
+      "title":"Coral",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkOrange",
+      "title":"Dark Orange",
+      "difficulty":"hard"
+    },
+    {"fileName":"Orange",
+      "title":"Orange",
+      "difficulty":"easy"
+    },
+    {"fileName":"Yellow",
+      "title":"Yellow",
+      "difficulty":"easy"
+    },
+    {"fileName":"LightYellow",
+      "title":"Light Yellow",
+      "difficulty":"hard"
+    },
+    {"fileName":"LemonChiffon",
+      "title":"Lemon Chiffon",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightGoldenrodYellow ",
+      "title":"Light Goldenrod Yellow ",
+      "difficulty":"hard"
+    },
+    {"fileName":"PapayaWhip",
+      "title":"Papaya Whip",
+      "difficulty":"hard"
+    },
+    {"fileName":"Moccasin",
+      "title":"Moccasin",
+      "difficulty":"hard"
+    },
+    {"fileName":"PeachPuff",
+      "title":"Peach Puff",
+      "difficulty":"hard"
+    },
+    {"fileName":"PaleGoldenrod",
+      "title":"Pale Goldenrod",
+      "difficulty":"hard"
+    },
+    {"fileName":"Khaki",
+      "title":"Khaki",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkKhaki",
+      "title":"Dark Khaki",
+      "difficulty":"hard"
+    },
+    {"fileName":"Gold",
+      "title":"Gold",
+      "difficulty":"hard"
+    },
+    {"fileName":"Cornsilk",
+      "title":"Cornsilk",
+      "difficulty":"hard"
+    },
+    {"fileName":"BlanchedAlmond",
+      "title":"Blanched Almond",
+      "difficulty":"hard"
+    },
+    {"fileName":"Bisque",
+      "title":"Bisque",
+      "difficulty":"hard"
+    },
+    {"fileName":"NavajoWhite",
+      "title":"Navajo White",
+      "difficulty":"hard"
+    },
+    {"fileName":"Wheat",
+      "title":"Wheat",
+      "difficulty":"hard"
+    },
+    {"fileName":"BurlyWood",
+      "title":"Burly Wood",
+      "difficulty":"hard"
+    },
+    {"fileName":"Tan",
+      "title":"Tan",
+      "difficulty":"hard"
+    },
+    {"fileName":"RosyBrown",
+      "title":"Rosy Brown",
+      "difficulty":"hard"
+    },
+    {"fileName":"SandyBrown",
+      "title":"Sandy Brown",
+      "difficulty":"hard"
+    },
+    {"fileName":"Goldenrod",
+      "title":"Goldenrod",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkGoldenrod",
+      "title":"Dark Goldenrod",
+      "difficulty":"hard"
+    },
+    {"fileName":"Peru",
+      "title":"Peru",
+      "difficulty":"hard"
+    },
+    {"fileName":"Chocolate",
+      "title":"Chocolate",
+      "difficulty":"hard"
+    },
+    {"fileName":"SaddleBrown",
+      "title":"Saddle Brown",
+      "difficulty":"hard"
+    },
+    {"fileName":"Sienna",
+      "title":"Sienna",
+      "difficulty":"hard"
+    },
+    {"fileName":"Brown",
+      "title":"Brown",
+      "difficulty":"easy"
+    },
+    {"fileName":"Maroon",
+      "title":"Maroon",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkOliveGreen",
+      "title":"Dark Olive Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"Olive",
+      "title":"Olive",
+      "difficulty":"hard"
+    },
+    {"fileName":"OliveDrab",
+      "title":"Olive Drab",
+      "difficulty":"hard"
+    },
+    {"fileName":"YellowGreen",
+      "title":"Yellow Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"LimeGreen",
+      "title":"Lime Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"Lime",
+      "title":"Lime",
+      "difficulty":"hard"
+    },
+    {"fileName":"LawnGreen",
+      "title":"Lawn Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"Chartreuse",
+      "title":"Chartreuse",
+      "difficulty":"hard"
+    },
+    {"fileName":"GreenYellow",
+      "title":"Green Yellow",
+      "difficulty":"hard"
+    },
+    {"fileName":"SpringGreen",
+      "title":"Spring Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumSpringGreen ",
+      "title":"Medium Spring Green ",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightGreen",
+      "title":"Light Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"PaleGreen",
+      "title":"Pale Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkSeaGreen",
+      "title":"Dark Sea Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumAquamarine",
+      "title":"Medium Aquamarine",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumSeaGreen",
+      "title":"Medium Sea Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"SeaGreen",
+      "title":"Sea Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"ForestGreen",
+      "title":"Forest Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"Green",
+      "title":"Green",
+      "difficulty":"easy"
+    },
+    {"fileName":"DarkGreen",
+      "title":"Dark Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"Aqua",
+      "title":"Aqua",
+      "difficulty":"hard"
+    },
+    {"fileName":"Cyan",
+      "title":"Cyan",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightCyan",
+      "title":"Light Cyan",
+      "difficulty":"hard"
+    },
+    {"fileName":"PaleTurquoise",
+      "title":"Pale Turquoise",
+      "difficulty":"hard"
+    },
+    {"fileName":"Aquamarine",
+      "title":"Aquamarine",
+      "difficulty":"hard"
+    },
+    {"fileName":"Turquoise",
+      "title":"Turquoise",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumTurquoise",
+      "title":"Medium Turquoise",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkTurquoise",
+      "title":"Dark Turquoise",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightSeaGreen",
+      "title":"Light Sea Green",
+      "difficulty":"hard"
+    },
+    {"fileName":"CadetBlue",
+      "title":"Cadet Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkCyan",
+      "title":"Dark Cyan",
+      "difficulty":"hard"
+    },
+    {"fileName":"Teal",
+      "title":"Teal",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightSteelBlue",
+      "title":"Light Steel Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"PowderBlue",
+      "title":"Powder Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightBlue",
+      "title":"Light Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"SkyBlue",
+      "title":"Sky Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightSkyBlue",
+      "title":"Light Sky Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"DeepSkyBlue",
+      "title":"Deep Sky Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"DodgerBlue",
+      "title":"Dodger Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"CornflowerBlue",
+      "title":"Cornflower Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"SteelBlue",
+      "title":"Steel Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"RoyalBlue",
+      "title":"Royal Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"Blue",
+      "title":"Blue",
+      "difficulty":"easy"
+    },
+    {"fileName":"MediumBlue",
+      "title":"Medium Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkBlue",
+      "title":"Dark Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"Navy",
+      "title":"Navy",
+      "difficulty":"hard"
+    },
+    {"fileName":"MidnightBlue",
+      "title":"Midnight Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"Lavender",
+      "title":"Lavender",
+      "difficulty":"hard"
+    },
+    {"fileName":"Thistle",
+      "title":"Thistle",
+      "difficulty":"hard"
+    },
+    {"fileName":"Plum",
+      "title":"Plum",
+      "difficulty":"hard"
+    },
+    {"fileName":"Violet",
+      "title":"Violet",
+      "difficulty":"hard"
+    },
+    {"fileName":"Orchid",
+      "title":"Orchid",
+      "difficulty":"hard"
+    },
+    {"fileName":"Fuchsia",
+      "title":"Fuchsia",
+      "difficulty":"hard"
+    },
+    {"fileName":"Magenta",
+      "title":"Magenta",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumOrchid",
+      "title":"Medium Orchid",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumPurple",
+      "title":"Medium Purple",
+      "difficulty":"hard"
+    },
+    {"fileName":"BlueViolet",
+      "title":"Blue Violet",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkViolet",
+      "title":"Dark Violet",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkOrchid",
+      "title":"Dark Orchid",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkMagenta",
+      "title":"Dark Magenta",
+      "difficulty":"hard"
+    },
+    {"fileName":"Purple",
+      "title":"Purple",
+      "difficulty":"easy"
+    },
+    {"fileName":"Indigo",
+      "title":"Indigo",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkSlateBlue",
+      "title":"Dark Slate Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"SlateBlue",
+      "title":"Slate Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"MediumSlateBlue ",
+      "title":"Medium Slate Blue ",
+      "difficulty":"hard"
+    },
+    {"fileName":"White",
+      "title":"White",
+      "difficulty":"easy"
+    },
+    {"fileName":"Snow",
+      "title":"Snow",
+      "difficulty":"hard"
+    },
+    {"fileName":"Honeydew",
+      "title":"Honeydew",
+      "difficulty":"hard"
+    },
+    {"fileName":"MintCream",
+      "title":"Mint Cream",
+      "difficulty":"hard"
+    },
+    {"fileName":"Azure",
+      "title":"Azure",
+      "difficulty":"hard"
+    },
+    {"fileName":"AliceBlue",
+      "title":"Alice Blue",
+      "difficulty":"hard"
+    },
+    {"fileName":"GhostWhite",
+      "title":"Ghost White",
+      "difficulty":"hard"
+    },
+    {"fileName":"WhiteSmoke",
+      "title":"White Smoke",
+      "difficulty":"hard"
+    },
+    {"fileName":"Seashell",
+      "title":"Seashell",
+      "difficulty":"hard"
+    },
+    {"fileName":"Beige",
+      "title":"Beige",
+      "difficulty":"hard"
+    },
+    {"fileName":"OldLace",
+      "title":"Old Lace",
+      "difficulty":"hard"
+    },
+    {"fileName":"FloralWhite",
+      "title":"Floral White",
+      "difficulty":"hard"
+    },
+    {"fileName":"Ivory",
+      "title":"Ivory",
+      "difficulty":"hard"
+    },
+    {"fileName":"AntiqueWhite",
+      "title":"Antique White",
+      "difficulty":"hard"
+    },
+    {"fileName":"Linen",
+      "title":"Linen",
+      "difficulty":"hard"
+    },
+    {"fileName":"LavenderBlush",
+      "title":"Lavender Blush",
+      "difficulty":"hard"
+    },
+    {"fileName":"MistyRose",
+      "title":"Misty Rose",
+      "difficulty":"hard"
+    },
+    {"fileName":"Gainsboro",
+      "title":"Gainsboro",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightGray",
+      "title":"Light Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"Silver",
+      "title":"Silver",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkGray",
+      "title":"Dark Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"Gray",
+      "title":"Gray",
+      "difficulty":"easy"
+    },
+    {"fileName":"DimGray",
+      "title":"Dim Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"LightSlateGray",
+      "title":"Light Slate Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"SlateGray",
+      "title":"Slate Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"DarkSlateGray",
+      "title":"Dark Slate Gray",
+      "difficulty":"hard"
+    },
+    {"fileName":"Black",
+      "title":"Black",
+      "difficulty":"easy"
+    }
+  ]
+}
+

@@ -6,5 +6,5 @@ zip  ../index.zip * –X -r
 # read -n1 -r -p "Zip complete, press space to deploy..." key
 
 cd ..
-aws lambda update-function-code --function-name aws-serverless-repository-alexaskillskitnodejsfact-1I8RKFYK0DIRS --zip-file fileb://index.zip
+aws lambda update-function-code --function-name ask-custom-teach-me --zip-file fileb://index.zip
 cd ..

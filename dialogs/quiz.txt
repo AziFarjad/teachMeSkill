@@ -1,0 +1,4 @@
+LaunchRequest
+StartColorsQuizIntent
+AMAZON.YesIntent
+AMAZON.StopIntent
